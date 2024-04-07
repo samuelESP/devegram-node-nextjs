@@ -15,11 +15,13 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/md5": "^2.3.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
+    "md5": "^2.3.0",
     "typescript": "^5"
   }
 }

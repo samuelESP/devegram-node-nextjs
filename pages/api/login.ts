@@ -3,7 +3,10 @@ import type { respostaPadraoMsg } from '../../types/respostaPadraoMsg'
 
 import { conectaMongoDB } from "../../middlewares/conectaMongoDB"
 
-const endPointLogin = (
+import md5 from 'md5';
+import { UserModel } from '@/models/UserModel';
+
+const endPointLogin = async (
     req: NextApiRequest,
     res: NextApiResponse <respostaPadraoMsg>
 ) => {
@@ -11,8 +14,10 @@ const endPointLogin = (
 
         const {login, password} = req.body;
 
-        if(login === "admin@admin.com" && password === "admin1234"){
-            return res.status(200).json({msg: "Usuário autenticado com sucesso"})
+        const usersFounders = await UserModel.find({email: login, password: md5(password)})
+        if(usersFounders && usersFounders.length > 0){
+            const userFound = usersFounders[0];
+            return res.status(200).json({msg: `Usuário..: ${userFound.nome} autenticado com sucesso`})
         }
         return res.status(400).json({erro: "Usuário ou senha não encontrados"})
 
