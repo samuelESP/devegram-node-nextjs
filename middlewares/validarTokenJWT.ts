@@ -14,7 +14,7 @@ export  const validarTokenJWT = (handler: NextApiHandler) =>
             return res.status(500).json({erro: `ENV de chave JWT não informada na execução do processo`})
         }
 
-        if(!res || !req.headers){
+        if(!req || !req.headers){
             return res.status(401).json({erro: `Não foi possível validar o token de acesso`})
         }
 
