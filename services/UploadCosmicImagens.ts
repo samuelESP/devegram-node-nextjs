@@ -28,8 +28,6 @@ const uploadCosmicImagens = async (req: any) => {
       originalname: req.file.originalname,
       buffer: req.file.buffer,
     };
-    console.log("uploadCosmicImagens url" , req.url);
-    console.log("uploadCosmicImagens media_object" , media_object);
     if (req.url && req.url.includes("publicacao")) {
       return await bucketDevagram.media.insertOne({
         media: media_object,
@@ -41,9 +39,7 @@ const uploadCosmicImagens = async (req: any) => {
         folder: "avatares",
       });
     } 
-  }
-  console.log("Não passa pelo meu if(req.file?.originalname)");
-  
+  } 
 };
 
 export { upload, uploadCosmicImagens };

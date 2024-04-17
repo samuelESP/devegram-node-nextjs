@@ -7,6 +7,7 @@ import md5 from 'md5';
 import {upload, uploadCosmicImagens} from "../../services/UploadCosmicImagens"
 import nc from "next-connect";
 
+
 const handler = nc()
     .use(upload.single("file"))
     .post(async (req: NextApiRequest, res:NextApiResponse<respostaPadraoMsg>) => {
@@ -23,20 +24,16 @@ const handler = nc()
         if(!user.password || user.password.length < 4){
             return res.status(400).json({erro: "senha inválido"})
         }
-    // validação, se já existe user com o mesmo email
+
     // validação, se já existe user com o mesmo email
         const usersWithSameEmail = await UserModel.find({email: user.email})
-            if(usersWithSameEmail && usersWithSameEmail.length > 0){
-            if(usersWithSameEmail && usersWithSameEmail.length > 0){
-            return res.status(400).json({erro: "Usuário já existente"})
-            }
+        if(usersWithSameEmail && usersWithSameEmail.length > 0){
+        return res.status(400).json({erro: "Usuário já existente"})
+        }
             
         // Enviar a imagen do multer que já foi processada, para o cosmic
         const image = await uploadCosmicImagens(req); 
-            }
-            
-        // Enviar a imagen do multer que já foi processada, para o cosmic
-        const image = await uploadCosmicImagens(req); 
+
         // Salvar no banco de dados
         const userCriptografado = {
             nome: user.nome,
