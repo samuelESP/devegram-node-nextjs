@@ -158,3 +158,44 @@ if(!req.query){
 req.query.userId = decoded._id;
         
 ```
+
+# Multer
+
+O Multer é uma biblioteca Node.js que lida com o processo de upload de arquivos em aplicativos da web.
+
+## multer.memoryStorage()
+
+Quando você usa ***multer.memoryStorage()***, o Multer armazena os arquivos em memória temporária, 
+em vez de salvá-los no sistema de arquivos do servidor. 
+Isso pode ser útil em casos onde você precisa processar os arquivos temporários antes de armazená-los 
+permanentemente ou quando não deseja armazenar os arquivos fisicamente no servidor.
+
+
+## multer({ storage: storage })
+
+ Essa linha de código configura o Multer para usar o objeto de armazenamento 
+ que você definiu anteriormente (storage) para gerenciar o armazenamento de arquivos.
+
+
+
+multer({ storage: storage }): Esta é uma maneira de configurar o Multer para usar um objeto de armazenamento específico. 
+Aqui, estamos passando um objeto de configuração para o Multer. 
+A propriedade **storage** desse objeto de configuração indica que queremos usar um método de armazenamento personalizado em vez do armazenamento padrão do Multer.
+
+***storage: storage***: Esta é a configuração que estamos passando para o Multer. 
+Estamos dizendo ao Multer para usar o objeto de armazenamento que definimos anteriormente, ou seja, storage.
+
+Portanto, quando você faz o upload de um arquivo usando o objeto upload que foi configurado dessa maneira,
+ o Multer usará o objeto de armazenamento na memória para gerenciar o armazenamento temporário do arquivo
+  antes de qualquer manipulação ou processamento adicional que você deseje realizar.
+
+# const handler = nc()
+
+Utilizando o nc do Next-Connect que serve para "gerenciar" as requisições e resposta HTTP
+
+# nc().use(upload.single("file")).post(...)
+
+utiliza o Multer para fazer upload de um único arquivo
+
+Vou colocar todo meu endPoint de cadastro dentro do meu **.post(...)**
+logo eu não preciso mais checar se o meu method e POST, pois ele so vai chegar lá se for POST

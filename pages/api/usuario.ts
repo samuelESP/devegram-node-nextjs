@@ -5,7 +5,7 @@ import { validarTokenJWT } from "../../middlewares/validarTokenJWT"
 
 const endpointUsuario = 
 (req: NextApiRequest, res: NextApiResponse <respostaPadraoMsg>) => {
- return res.status(200).json({msg: "Usário autenticado com sucesos"})
+ return res.status(200).json({msg: "Usário autenticado com sucesso"})
 }
 
 export default validarTokenJWT(endpointUsuario);
