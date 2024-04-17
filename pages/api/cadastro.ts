@@ -42,9 +42,7 @@ const handler = nc()
             nome: user.nome,
             email: user.email,
             password: md5(user.password),
-            avatar: image?.media?.url,
-            password: md5(user.password),
-            avatar: image?.media?.url,
+            avatar: image?.media?.url
         }
         await UserModel.create(userCriptografado)
         return res.status(200).json({msg: "Usuario criado com sucesso"})
@@ -62,5 +60,4 @@ export const config = {
   };
 
 
-export default conectaMongoDB(handler);
 export default conectaMongoDB(handler);
