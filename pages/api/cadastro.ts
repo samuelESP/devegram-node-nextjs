@@ -13,6 +13,7 @@ const handler = nc()
     try {
         const user = req.body as CadastroRequisicao;
                 
+                
         if(!user.nome || user.nome.length < 2){
             return res.status(400).json({erro: "Nome inválido"})
         }
@@ -23,9 +24,15 @@ const handler = nc()
             return res.status(400).json({erro: "senha inválido"})
         }
     // validação, se já existe user com o mesmo email
+    // validação, se já existe user com o mesmo email
         const usersWithSameEmail = await UserModel.find({email: user.email})
             if(usersWithSameEmail && usersWithSameEmail.length > 0){
+            if(usersWithSameEmail && usersWithSameEmail.length > 0){
             return res.status(400).json({erro: "Usuário já existente"})
+            }
+            
+        // Enviar a imagen do multer que já foi processada, para o cosmic
+        const image = await uploadCosmicImagens(req); 
             }
             
         // Enviar a imagen do multer que já foi processada, para o cosmic
@@ -34,6 +41,8 @@ const handler = nc()
         const userCriptografado = {
             nome: user.nome,
             email: user.email,
+            password: md5(user.password),
+            avatar: image?.media?.url,
             password: md5(user.password),
             avatar: image?.media?.url,
         }
@@ -53,4 +62,5 @@ export const config = {
   };
 
 
+export default conectaMongoDB(handler);
 export default conectaMongoDB(handler);
