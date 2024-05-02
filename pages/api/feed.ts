@@ -49,7 +49,7 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<respostaPa
                                 nome: usuarioDaPublicacao.nome,
                                 avatar: usuarioDaPublicacao.avatar
                             }};
-                            console.log("teste",final);
+                            
                             
                         result.push(final);
                         }
