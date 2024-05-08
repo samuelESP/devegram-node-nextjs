@@ -4,6 +4,7 @@ import { validarTokenJWT } from '@/middlewares/validarTokenJWT';
 import { conectaMongoDB } from '@/middlewares/conectaMongoDB';
 import {SeguidorModel} from "../../models/SeguidorModel";
 import { UserModel } from '@/models/UserModel';
+import { politicaDeCors } from '@/middlewares/politicaDeCors';
 
 
 const seguirEndpoint = async (req:NextApiRequest, res:NextApiResponse<respostaPadraoMsg>) => {
@@ -71,5 +72,5 @@ const seguirEndpoint = async (req:NextApiRequest, res:NextApiResponse<respostaPa
     }
 }
 
-export default validarTokenJWT(conectaMongoDB(seguirEndpoint));
+export default politicaDeCors(validarTokenJWT(conectaMongoDB(seguirEndpoint)));
     

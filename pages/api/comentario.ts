@@ -4,6 +4,7 @@ import { validarTokenJWT } from '@/middlewares/validarTokenJWT';
 import { conectaMongoDB } from '@/middlewares/conectaMongoDB';
 import { UserModel } from '@/models/UserModel';
 import { PublicacaoModel } from '@/models/PublicacaoModel';
+import { politicaDeCors } from '@/middlewares/politicaDeCors';
 
 
 
@@ -43,4 +44,4 @@ const comentarioEndpoint = async (req:NextApiRequest, res:NextApiResponse<respos
     }
 }
 
-export default validarTokenJWT(conectaMongoDB(comentarioEndpoint));
+export default politicaDeCors(validarTokenJWT(conectaMongoDB(comentarioEndpoint)));

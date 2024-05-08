@@ -6,6 +6,7 @@ import {conectaMongoDB} from "../../middlewares/conectaMongoDB";
 import {validarTokenJWT} from "../../middlewares/validarTokenJWT";
 import {PublicacaoModel} from "../../models/PublicacaoModel";
 import {UserModel} from "../../models/UserModel";
+import { politicaDeCors } from '@/middlewares/politicaDeCors';
 
 const handler = nc()
     .use(upload.single('file'))
@@ -59,4 +60,4 @@ export const config = {
  }
 }
 
-export default validarTokenJWT((conectaMongoDB(handler)));
+export default politicaDeCors(validarTokenJWT((conectaMongoDB(handler)))) ;

@@ -5,6 +5,7 @@ import { respostaPadraoMsg } from "@/types/respostaPadraoMsg";
 import { validarTokenJWT } from "@/middlewares/validarTokenJWT";
 import { conectaMongoDB } from "@/middlewares/conectaMongoDB";
 import { UserModel } from "@/models/UserModel";
+import { politicaDeCors } from "@/middlewares/politicaDeCors";
 
 const pesquisaEndPoint = async (req: NextApiRequest, res: NextApiResponse<respostaPadraoMsg | any[]>) => {
 
@@ -43,4 +44,4 @@ const pesquisaEndPoint = async (req: NextApiRequest, res: NextApiResponse<respos
     }
 }
 
-export default validarTokenJWT(conectaMongoDB(pesquisaEndPoint));
+export default politicaDeCors(validarTokenJWT(conectaMongoDB(pesquisaEndPoint))) ;

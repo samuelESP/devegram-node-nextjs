@@ -6,6 +6,7 @@ import {UserModel} from "../../models/UserModel";
 import md5 from 'md5';
 import {upload, uploadCosmicImagens} from "../../services/UploadCosmicImagens"
 import nc from "next-connect";
+import { politicaDeCors } from "@/middlewares/politicaDeCors";
 
 
 const handler = nc()
@@ -57,4 +58,4 @@ export const config = {
   };
 
 
-export default conectaMongoDB(handler);
+export default politicaDeCors(conectaMongoDB(handler)) ;

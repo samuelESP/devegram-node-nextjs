@@ -7,6 +7,7 @@ import { conectaMongoDB } from "../../middlewares/conectaMongoDB"
 import md5 from 'md5';
 import { UserModel } from '@/models/UserModel';
 import jwt from 'jsonwebtoken';
+import { politicaDeCors } from '@/middlewares/politicaDeCors';
 
 const endPointLogin = async (
     req: NextApiRequest,
@@ -42,4 +43,4 @@ const endPointLogin = async (
     return res.status(405).json({erro: "Método informado não é válido"})
 }
 
-export default conectaMongoDB(endPointLogin)
+export default politicaDeCors(conectaMongoDB(endPointLogin)); 

@@ -199,3 +199,26 @@ utiliza o Multer para fazer upload de um único arquivo
 
 Vou colocar todo meu endPoint de cadastro dentro do meu **.post(...)**
 logo eu não preciso mais checar se o meu method e POST, pois ele so vai chegar lá se for POST
+
+
+# CORS
+
+Agora que concluímos toda nossa API Devagram, já podemos iniciar os tratamentos para disponibilizar de forma online e produtiva para nossos usuários utilizarem.
+
+Porém se tratando de backend a maioria das tecnologias e servidores (o Next se enquadra nelas) tem restrições padrão para os acessos nas APIs, 
+então vamos precisar entende-los e configura-los para que nossa aplicação funcione corretamente.
+
+CORS - Cross-Origin Resource Sharing(Compartilhamento de recursos com origens diferentes) é um mecanismo que usa cabeçalhos adicionais HTTP para informar a um navegador
+ que permita que um aplicativo Web seja executado em uma origem (domínio) com permissão para acessar recursos selecionados de um servidor em uma origem distinta. 
+ Um aplicativo Web executa uma requisição cross-originHTTP ao solicitar um recurso que tenha uma origem diferente (domínio, protocolo e porta) da sua própria origem.
+
+Um exemplo de requisição cross-origin: o código JavaScript frontend de um aplicativo web disponível em http://domain-a.com usa XMLHttpRequest para fazer uma requisição para http://api.domain-b.com/data.json.
+
+Por motivos de segurança, navegadores restringem requisições cross-origin HTTP iniciadas por scripts. Por exemplo, XMLHttpRequest e FetchAPI seguem a política de mesma origem (same-origin policy).
+
+Isso significa que um aplicativo web que faz uso dessas APIs só poderá fazer solicitações para recursos de mesma origem da qual o aplicativo foi carregado, a menos que a resposta da outra origem inclua os cabeçalhos CORS corretos.
+
+**EX: Eu sou o site A, estou acessando a API B. Quem deve ter a politica CORS para acessar a API? Resposta: A API, pois, quem tem que liberar o acesso é quem está sendo requisitado e não quem requisita.
+Quem é consumido que precisa ter a politica do CORS**
+
+<img src="CORSExplicacao.png">
